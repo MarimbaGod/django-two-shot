@@ -26,5 +26,6 @@ def redirect_to_receipts(request):
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("receipts/", include("receipts.urls")),
+    path("accounts/", include("accounts.urls")),
     path("", redirect_to_receipts, name="receipts"),
 ]
