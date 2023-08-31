@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from receipts.models import Receipt
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-# unsure about how well I did at defining this view function...
+@login_required
 def receipts_list(request):
-    receipts = Receipt.objects.all()
+    receipts = Receipt.objects.filter(purchaser=request.user)
     context = {
         "receipts": receipts,
     }
