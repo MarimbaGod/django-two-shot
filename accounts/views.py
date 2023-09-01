@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from accounts.forms import LoginForm
-from django.shortcuts import redirect
+from accounts.forms import LoginForm, SignupForm
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -31,3 +31,31 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect("login")
+
+
+def user_signup(request):
+    if request.method == "POST":
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            password = form.cleaned_data.get("password")
+            password_confirmation = form.cleaned_data.get(
+                "password_confirmation"
+            )
+            if password == password_confirmation:
+                user = User.objects.create_user(
+                    username=form.cleaned_data.get("username"),
+                    password=password,
+                )
+                login(request, user)
+                return redirect("home")
+            else:
+                form.add_error(
+                    "password_confirmation", "The passwords do not match"
+                )
+    else:
+        form = SignupForm()
+    context = {
+        "form": form,
+    }
+
+    return render(request, "accounts/signup.html", context)
