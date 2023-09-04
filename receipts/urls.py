@@ -5,6 +5,7 @@ from receipts.views import (
     redirect,
     expense_category_list,
     accounts_list,
+    create_expense_category,
 )
 
 
@@ -17,4 +18,7 @@ urlpatterns = [
     path("create/", create_receipt, name="create_receipt"),
     path("categories/", expense_category_list, name="category_list"),
     path("accounts/", accounts_list, name="accounts_list"),
+    path(
+        "categories/create/", create_expense_category, name="create_category"
+    ),
 ]

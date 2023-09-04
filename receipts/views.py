@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from receipts.models import Receipt, ExpenseCategory, Account
 from django.contrib.auth.decorators import login_required
-from receipts.forms import CreateReceiptForm
+from receipts.forms import CreateReceiptForm, CreateExpenseForm
 
 
 # Create your views here.
@@ -29,6 +29,26 @@ def create_receipt(request):
         "form": form,
     }
     return render(request, "receipts/create.html", context)
+
+
+@login_required
+def create_expense_category(request):
+    if request.method == "POST":
+        form = CreateExpenseForm(request.POST)
+        if form.is_valid():
+            category = form.save(commit=False)
+            category.owner = request.user
+            category.save()
+            return redirect(
+                "category_list"
+            )  # named in receipts.urls category path
+    else:
+        form = CreateExpenseForm()
+
+    context = {
+        "form": form,
+    }
+    return render(request, "receipts/create_expense_form.html", context)
 
 
 @login_required
