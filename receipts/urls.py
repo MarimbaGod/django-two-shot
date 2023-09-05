@@ -6,6 +6,7 @@ from receipts.views import (
     expense_category_list,
     accounts_list,
     create_expense_category,
+    create_account,
 )
 
 
@@ -21,4 +22,5 @@ urlpatterns = [
     path(
         "categories/create/", create_expense_category, name="create_category"
     ),
+    path("accounts/create/", create_account, name="create_account"),
 ]
