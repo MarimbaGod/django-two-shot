@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Expenses and Receipts {% endblock %}</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'receipts'%}">Home</a></li>
+            <li><a href="{% url 'create_receipt'%}">Create Receipt</a></li>
+            <li><a href="{% url 'category_list'%}">Categories</a></li>
+            <li><a href="{% url 'accounts_list'%}">Accounts</a></li>
+            <li><a href="{% url 'create_category'%}">Create New Category</a></li>
+            <li><a href="{% url 'create_account'%}">Create New Account</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+</body>
+
+</html>

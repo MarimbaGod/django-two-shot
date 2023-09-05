@@ -1,33 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receipts</title>
-</head>
+{% block title %}
+Categories
+{% endblock %}
 
-<body>
-    <main>
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Name</td>
-                        <td>Number of Receipts</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for category in categories %}
-                    <tr>
-                        <td>{{ category.name }}</td>
-                        <td>{{ category.receipt_count }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </main>
-</body>
-
-</html>
+{% block content %}
+<div>
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Number of Receipts</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>{{ category.name }}</td>
+                <td>{{ category.receipt_count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,23 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Expense Category</title>
-</head>
+{% block title %}
+Create New Expense Category
+{% endblock %}
 
-<body>
-    <main>
-        <div>
-            <h1>Create Category</h1>
-            <form method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button>Create</button>
-            </form>
-        </div>
-    </main>
-</body>
 
-</html>
+{% block content %}
+<div>
+    <h1>Create Category</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Create</button>
+    </form>
+</div>
+{% endblock %}

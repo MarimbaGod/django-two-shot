@@ -1,23 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Account</title>
-</head>
+{% block title %}
+Create New Account
+{% endblock %}
 
-<body>
-    <main>
-        <div>
-            <h1>Create Account</h1>
-            <form method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button>Create</button>
-            </form>
-        </div>
-    </main>
-</body>
 
-</html>
+{% block content %}
+<div>
+    <h1>Create Account</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Create</button>
+    </form>
+</div>
+{% endblock %}
